@@ -71,14 +71,6 @@ function compactObject(value: IDataObject): IDataObject {
 	}, {});
 }
 
-function simplifyCampaign(campaign: IDataObject): IDataObject {
-	return {
-		id: campaign.id,
-		name: campaign.name,
-		frequency: campaign.frequency,
-	};
-}
-
 function getErrorMessage(error: unknown): string {
 	if (error instanceof Error) {
 		return error.message;
@@ -118,91 +110,11 @@ export class Scribeless implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Campaign',
-						value: 'campaign',
-					},
-					{
 						name: 'Recipient',
 						value: 'recipient',
 					},
 				],
 				default: 'recipient',
-			},
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				noDataExpression: true,
-				displayOptions: {
-					show: {
-						resource: ['campaign'],
-					},
-				},
-				options: [
-					{
-						name: 'Get Many',
-						value: 'getAll',
-						action: 'Get many campaigns',
-						description: 'Get many campaigns',
-					},
-				],
-				default: 'getAll',
-			},
-			{
-				displayName: 'Recurring Only',
-				name: 'recurringOnly',
-				type: 'boolean',
-				default: true,
-				displayOptions: {
-					show: {
-						resource: ['campaign'],
-						operation: ['getAll'],
-					},
-				},
-				description: 'Whether to return only recurring campaigns',
-			},
-			{
-				displayName: 'Return All',
-				name: 'returnAll',
-				type: 'boolean',
-				default: true,
-				displayOptions: {
-					show: {
-						resource: ['campaign'],
-						operation: ['getAll'],
-					},
-				},
-				description: 'Whether to return all results or only up to a given limit',
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 50,
-				typeOptions: {
-					minValue: 1,
-				},
-				displayOptions: {
-					show: {
-						resource: ['campaign'],
-						operation: ['getAll'],
-						returnAll: [false],
-					},
-				},
-				description: 'Max number of results to return',
-			},
-			{
-				displayName: 'Simplify Output',
-				name: 'simplifyOutput',
-				type: 'boolean',
-				default: true,
-				displayOptions: {
-					show: {
-						resource: ['campaign'],
-						operation: ['getAll'],
-					},
-				},
-				description: 'Whether to return only campaign ID, name, and frequency',
 			},
 			{
 				displayName: 'Operation',
@@ -231,7 +143,7 @@ export class Scribeless implements INodeType {
 				required: true,
 				default: '',
 				typeOptions: {
-					loadOptionsMethod: 'getRecurringCampaigns',
+					loadOptionsMethod: 'getCampaigns',
 				},
 				displayOptions: {
 					show: {
@@ -395,14 +307,17 @@ export class Scribeless implements INodeType {
 
 	methods = {
 		loadOptions: {
-			async getRecurringCampaigns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+			async getCampaigns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const response = await scribelessApiRequest.call(this, 'GET', '/campaigns');
-				const campaigns = extractArray(response)
-					.filter((campaign) => campaign.frequency === 'recurring')
-					.map((campaign) => ({
-						name: String(campaign.name ?? campaign.id),
+				const campaigns = extractArray(response).map((campaign) => {
+					const campaignName = String(campaign.name ?? campaign.id);
+					const frequency = campaign.frequency ? ` (${String(campaign.frequency)})` : '';
+
+					return {
+						name: `${campaignName}${frequency}`,
 						value: String(campaign.id),
-					}));
+					};
+				});
 
 				return campaigns.sort((a, b) => a.name.localeCompare(b.name));
 			},
@@ -417,30 +332,6 @@ export class Scribeless implements INodeType {
 			try {
 				const resource = this.getNodeParameter('resource', itemIndex) as string;
 				const operation = this.getNodeParameter('operation', itemIndex) as string;
-
-				if (resource === 'campaign' && operation === 'getAll') {
-					const recurringOnly = this.getNodeParameter('recurringOnly', itemIndex) as boolean;
-					const returnAll = this.getNodeParameter('returnAll', itemIndex) as boolean;
-					const simplifyOutput = this.getNodeParameter('simplifyOutput', itemIndex) as boolean;
-					const limit = returnAll ? undefined : (this.getNodeParameter('limit', itemIndex) as number);
-
-					let campaigns = extractArray(await scribelessApiRequest.call(this, 'GET', '/campaigns'));
-
-					if (recurringOnly) {
-						campaigns = campaigns.filter((campaign) => campaign.frequency === 'recurring');
-					}
-
-					if (limit !== undefined) {
-						campaigns = campaigns.slice(0, limit);
-					}
-
-					for (const campaign of campaigns) {
-						returnData.push({
-							json: simplifyOutput ? simplifyCampaign(campaign) : campaign,
-							pairedItem: { item: itemIndex },
-						});
-					}
-				}
 
 				if (resource === 'recipient' && operation === 'create') {
 					const additionalFields = this.getNodeParameter(

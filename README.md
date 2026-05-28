@@ -1,6 +1,6 @@
 # n8n-nodes-scribeless
 
-This is an n8n community node. It lets you add recipients to Scribeless recurring campaigns from n8n workflows.
+This is an n8n community node. It lets you add recipients to Scribeless campaigns from n8n workflows.
 
 Scribeless helps teams send automated handwritten direct mail.
 
@@ -19,10 +19,6 @@ Scribeless helps teams send automated handwritten direct mail.
 Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
 ## Operations
-
-Campaign:
-
-* Get Many
 
 Recipient:
 
@@ -44,9 +40,7 @@ Built with the official `@n8n/node-cli` scaffold. Test against the n8n version i
 
 ## Usage
 
-Use **Campaign > Get Many** to inspect available campaigns. By default, this returns only recurring campaigns.
-
-Use **Recipient > Add to Campaign** to send a recipient into a recurring campaign. The Campaign field loads recurring campaigns from Scribeless and sends the selected campaign ID to `POST /api/recipients`.
+Use **Recipient > Add to Campaign** to send a recipient into a Scribeless campaign. The Campaign field loads your campaigns from Scribeless so you can select a campaign by name instead of pasting an ID. The selected campaign ID is sent to `POST /api/recipients`.
 
 ## Resources
 
@@ -54,6 +48,10 @@ Use **Recipient > Add to Campaign** to send a recipient into a recurring campaig
 * [Scribeless](https://scribeless.co)
 
 ## Version history
+
+### 0.1.3
+
+Updated campaign selection to use a campaign dropdown on the recipient action, and changed credential documentation links to the public package repository.
 
 ### 0.1.0
 

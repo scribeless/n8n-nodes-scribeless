@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://github.com/scribeless/scribeless-integrations/tree/main/n8n/n8n-nodes-scribeless#credentials"
+				"url": "https://github.com/scribeless/n8n-nodes-scribeless#credentials"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://github.com/scribeless/scribeless-integrations/tree/main/n8n/n8n-nodes-scribeless"
+				"url": "https://github.com/scribeless/n8n-nodes-scribeless"
 			}
 		]
 	}

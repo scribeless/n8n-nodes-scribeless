@@ -17,7 +17,7 @@ export class ScribelessApi implements ICredentialType {
 	};
 
 	documentationUrl =
-		'https://github.com/scribeless/scribeless-integrations/tree/main/n8n/n8n-nodes-scribeless#credentials';
+		'https://github.com/scribeless/n8n-nodes-scribeless#credentials';
 
 	properties: INodeProperties[] = [
 		{
