@@ -1,0 +1,31 @@
+name: Publish n8n Scribeless node
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Publish
+        run: |
+          npm run lint
+          npm run build
+          RELEASE_MODE=true npx npm@latest publish --provenance --access public
