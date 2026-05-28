@@ -1,11 +1,15 @@
 {
   "name": "n8n-nodes-scribeless",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Add recipients to Scribeless recurring campaigns from n8n workflows.",
   "license": "MIT",
   "homepage": "https://scribeless.co",
   "keywords": ["n8n-community-node-package"],
-  "author": { "name": "Scribeless" },
+  "author": {
+    "name": "Scribeless",
+    "email": "team@scribeless.co",
+    "url": "https://scribeless.co"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scribeless/n8n-nodes-scribeless.git"
