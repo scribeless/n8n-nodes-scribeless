@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- Keep the campaign dropdown load-options method compatible with existing n8n UI sessions while returning all campaigns.
+
 ## 0.1.3
 
 - Remove the standalone campaign lookup action from the node picker.

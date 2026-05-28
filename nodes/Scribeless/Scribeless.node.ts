@@ -143,7 +143,7 @@ export class Scribeless implements INodeType {
 				required: true,
 				default: '',
 				typeOptions: {
-					loadOptionsMethod: 'getCampaigns',
+					loadOptionsMethod: 'getRecurringCampaigns',
 				},
 				displayOptions: {
 					show: {
@@ -307,7 +307,7 @@ export class Scribeless implements INodeType {
 
 	methods = {
 		loadOptions: {
-			async getCampaigns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+			async getRecurringCampaigns(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 				const response = await scribelessApiRequest.call(this, 'GET', '/campaigns');
 				const campaigns = extractArray(response).map((campaign) => {
 					const campaignName = String(campaign.name ?? campaign.id);
