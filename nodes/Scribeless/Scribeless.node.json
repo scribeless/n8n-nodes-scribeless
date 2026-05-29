@@ -1,8 +1,8 @@
 {
-	"node": "n8n-nodes-scribeless",
+	"node": "n8n-nodes-scribeless.scribeless",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Marketing", "Sales"],
+	"categories": ["Marketing & Content", "Sales"],
 	"resources": {
 		"credentialDocumentation": [
 			{

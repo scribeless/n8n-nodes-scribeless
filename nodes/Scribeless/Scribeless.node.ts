@@ -95,13 +95,6 @@ export class Scribeless implements INodeType {
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'scribelessApi', required: true }],
-		requestDefaults: {
-			baseURL: API_BASE_URL,
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		},
 		properties: [
 			{
 				displayName: 'Resource',
