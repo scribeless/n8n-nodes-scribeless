@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6
+
+- Use a visible branded Scribeless icon for light and dark n8n surfaces.
+
 ## 0.1.5
 
 - Fix n8n verification metadata for the Scribeless node.
