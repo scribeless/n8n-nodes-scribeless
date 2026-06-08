@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7
+
+- Add a Scribeless Trigger node for signed `qr_code.scanned` webhook deliveries.
+- Add a credential base URL setting so local n8n testing can point at Scribeless dev while production keeps the default platform URL.
+
 ## 0.1.6
 
 - Use a visible branded Scribeless icon for light and dark n8n surfaces.

@@ -11,25 +11,7 @@ import {
 	type INodeTypeDescription,
 } from 'n8n-workflow';
 
-type ScribelessApiContext = IExecuteFunctions | ILoadOptionsFunctions;
-
-const API_BASE_URL = 'https://platform.scribeless.co/api';
-
-async function scribelessApiRequest(
-	this: ScribelessApiContext,
-	method: 'GET' | 'POST',
-	endpoint: string,
-	body?: IDataObject,
-): Promise<unknown> {
-	const options = {
-		method,
-		url: `${API_BASE_URL}${endpoint}`,
-		body,
-		json: true,
-	};
-
-	return await this.helpers.httpRequestWithAuthentication.call(this, 'scribelessApi', options);
-}
+import { scribelessApiRequest } from './GenericFunctions';
 
 function asDataObject(value: unknown): IDataObject | undefined {
 	if (typeof value === 'object' && value !== null && !Array.isArray(value)) {

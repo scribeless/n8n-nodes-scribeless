@@ -6,6 +6,8 @@ import type {
 	INodeProperties,
 } from 'n8n-workflow';
 
+import { SCRIBELESS_API_DEFAULT_BASE_URL } from '../nodes/Scribeless/GenericFunctions';
+
 export class ScribelessApi implements ICredentialType {
 	name = 'scribelessApi';
 
@@ -28,6 +30,15 @@ export class ScribelessApi implements ICredentialType {
 			required: true,
 			default: '',
 		},
+		{
+			displayName: 'Base URL',
+			name: 'baseUrl',
+			type: 'string',
+			default: SCRIBELESS_API_DEFAULT_BASE_URL,
+			required: true,
+			description:
+				'Use the Scribeless API base URL. Keep the default for production; use a dev URL only for local testing.',
+		},
 	];
 
 	authenticate: IAuthenticateGeneric = {
@@ -41,7 +52,7 @@ export class ScribelessApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: 'https://platform.scribeless.co/api',
+			baseURL: '={{$credentials.baseUrl.replace(/\\/+$/, "").replace(/\\/api$/, "") + "/api"}}',
 			url: '/auth/whoami',
 			method: 'GET',
 		},
