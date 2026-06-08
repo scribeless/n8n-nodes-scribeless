@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.8
+
+- Republish the QR scan trigger release from GitHub Actions with npm provenance.
+- Add the tag-triggered publish workflow required for n8n Cloud verification.
+
 ## 0.1.7
 
 - Add a Scribeless Trigger node for signed `qr_code.scanned` webhook deliveries.

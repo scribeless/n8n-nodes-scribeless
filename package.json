@@ -1,10 +1,12 @@
 {
   "name": "n8n-nodes-scribeless",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Add recipients to Scribeless campaigns from n8n workflows.",
   "license": "MIT",
   "homepage": "https://scribeless.co",
-  "keywords": ["n8n-community-node-package"],
+  "keywords": [
+    "n8n-community-node-package"
+  ],
   "author": {
     "name": "Scribeless",
     "email": "team@scribeless.co",
@@ -23,11 +25,15 @@
     "release": "n8n-node release",
     "prepublishOnly": "n8n-node prerelease"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "strict": true,
-    "credentials": ["dist/credentials/ScribelessApi.credentials.js"],
+    "credentials": [
+      "dist/credentials/ScribelessApi.credentials.js"
+    ],
     "nodes": [
       "dist/nodes/Scribeless/Scribeless.node.js",
       "dist/nodes/ScribelessTrigger/ScribelessTrigger.node.js"
@@ -40,5 +46,7 @@
     "release-it": "^19.0.4",
     "typescript": "5.9.2"
   },
-  "peerDependencies": { "n8n-workflow": "*" }
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
 }
