@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.9
+
+- Fix the provenance publish workflow install step for GitHub Actions.
+
 ## 0.1.8
 
 - Republish the QR scan trigger release from GitHub Actions with npm provenance.

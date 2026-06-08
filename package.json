@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-scribeless",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Add recipients to Scribeless campaigns from n8n workflows.",
   "license": "MIT",
   "homepage": "https://scribeless.co",
