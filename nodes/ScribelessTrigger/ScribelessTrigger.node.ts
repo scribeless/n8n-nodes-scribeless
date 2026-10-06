@@ -177,7 +177,6 @@ export class ScribelessTrigger implements INodeType {
 		defaults: {
 			name: 'ScribelessTrigger',
 		},
-		usableAsTool: true,
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
 		credentials: [{ name: 'scribelessApi', required: true }],
