@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.10
+
+- Remove AI tool eligibility from the QR scan trigger to meet current n8n verification rules.
+- Pin the n8n node CLI to 0.51.3 and refresh the dependency lockfile so release checks enforce the current rules.
+
 ## 0.1.9
 
 - Fix the provenance publish workflow install step for GitHub Actions.
